@@ -23,14 +23,14 @@ def convert_dataset_to_df(data):
     return result_df
 
 
-def data_normalize(dataset):
-    to_int = lambda x: float(x)
+def data_normalize(dataset_values):
+    to_float = lambda x: float(x)
 
-    for iterable in range(len(dataset)):
+    for iterable in range(len(dataset_values)):
         try:
-            dataset[iterable] = to_int(dataset[iterable])
+            dataset_values[iterable] = to_float(dataset_values[iterable])
         except ValueError:
-            dataset[iterable] = 0
+            dataset_values[iterable] = 0
 
 
 def calculate_median(data):
@@ -39,23 +39,18 @@ def calculate_median(data):
         values = data[soil_variable]
         data_normalize(values)
         length = len(values)
+        
         if length % 2 == 0:
             poss_median1 = ceil(length / 2)
             poss_median2 = poss_median1 - 1
             median = (values[poss_median1] + values[poss_median2]) / 2
             medians[soil_variable] = median
+            
         else:
             poss_median = ceil(length / 2)
             medians[soil_variable] = values[poss_median]
 
     return medians
-
-
-
-def normalize_params(params):
-    params["departamento"] = params["departamento"].upper()
-    params["municipio"] = params["municipio"].upper()
-    params["cultivo"] = params["cultivo"].title()
 
 
 def get_relevant_info(data):
@@ -66,6 +61,8 @@ def get_relevant_info(data):
         new_df[column_name] = data[column_name]
     return new_df
 
-# result = get_data(dataset_identifier="ch4u-f3i5", where="departamento = 'AMAZONAS'")
-# result_df = convert_dataset_to_df(result)
-# print(result_df["municipio"])
+
+def normalize_params(params):
+    params["departamento"] = params["departamento"].upper()
+    params["municipio"] = params["municipio"].upper()
+    params["cultivo"] = params["cultivo"].title()
