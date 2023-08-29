@@ -10,12 +10,11 @@ def menu():
     
 def get_option():
     while True:
-        menu()
         op = int(input("Ingrese un valor: "))
 
         if op != 1 and op != 2:
             print("\n\tOpcion no valida\n")
-            
+            continue
         return op
         
 
@@ -41,6 +40,8 @@ def get_params():
 
 
 def print_table(data, medians):
+    clean_terminal()
+    
     columns_table = ["departamento", "municipio", "cultivo", "topografia"]
     soil_variable_table = ["ph", "potasio", "fosforo"]
 
@@ -49,7 +50,7 @@ def print_table(data, medians):
     print("\t\t", end="")
     for column_name in soil_variable_table:
         print(f"{column_name.capitalize():<15}", end="")
-    print("\n", "=" * 130)
+    print("\n", "=" * 125)
 
     for value in data.iloc[0][:4]:
         print(f"{value:<15}", end="")
