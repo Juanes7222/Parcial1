@@ -4,6 +4,6 @@
 
 Para instalar las dependencias escribe el siguiente comando:
 
-    pip install requirements.txt
+    pip install -r requirements.txt
 
 Se debe de ejecutar en el directorio del archivo *requirements.txt*
