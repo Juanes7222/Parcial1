@@ -67,8 +67,3 @@ def normalize_params(params):
     params["departamento"] = params["departamento"].upper()
     params["municipio"] = params["municipio"].upper()
     params["cultivo"] = params["cultivo"].title()
-
-result = create_client().get("ch4u-f3i5", where="departamento = 'AMAZONAS' and cultivo = 'Café' and municipio = 'EL ENCANTO'")#
-result_df = convert_dataset_to_df(result)
-
-print(result_df["f_sforo_p_bray_ii_mg_kg"])
