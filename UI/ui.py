@@ -45,12 +45,12 @@ def print_table(data, medians):
     columns_table = ["departamento", "municipio", "cultivo", "topografia"]
     soil_variable_table = ["ph", "potasio", "fosforo"]
 
-    print("\t\t\t", end="")
+    print(f"{' ':>18}", end="")
     for column_name in columns_table:
         print(f"{column_name.capitalize():<15}", end="")
     print("\n", "=" * 125)
     
-    print("\t\t\t", end="")
+    print(f"{' ':>18}", end="")
     for value in data.iloc[0][:4]:
         print(f"{value:<15}", end="")
     print("\n", "=" * 125)
@@ -58,11 +58,12 @@ def print_table(data, medians):
     print(f"\n\n{'Medianas':>62}")
     print("\n", "=" * 125)
     
-    print("\t\t\t\t\t", end="")
+    print(f"{' ':>37}", end="")
     for column_name in soil_variable_table:
         print(f"{column_name.capitalize():<17}", end="")
     
-    print("\n\t\t\t\t\t", end="")
+    print(f"\n{' ':>37}", end="")
+    
     for soil_variable in soil_variables:
         print(f"{medians[soil_variable]:.3f}", " " * 11, end="")
 
