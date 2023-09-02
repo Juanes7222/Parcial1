@@ -19,7 +19,8 @@ def get_data(dataset_identifier, **kwargs):
 def convert_dataset_to_df(data):
     result_df = pd.DataFrame.from_records(data)
     if result_df.shape[1] == 0:
-        raise ValueError("No se encontraron valores con estos parametros, verifique que haya escrito todo de manera correcta")
+        raise ValueError(
+            "No se encontraron valores con estos parametros, verifique que haya escrito todo de manera correcta")
     return result_df
 
 
@@ -30,7 +31,7 @@ def data_normalize(dataset_values):
         try:
             dataset_values[iterable] = to_float(dataset_values[iterable])
         except ValueError:
-            dataset_values[iterable] = 0
+            dataset_values.pop(iterable)
 
 
 def calculate_median(data):
@@ -39,13 +40,13 @@ def calculate_median(data):
         values = data[soil_variable]
         data_normalize(values)
         length = len(values)
-        
+
         if length % 2 == 0:
             poss_median1 = ceil(length / 2)
             poss_median2 = poss_median1 - 1
             median = (values[poss_median1] + values[poss_median2]) / 2
             medians[soil_variable] = median
-            
+
         else:
             poss_median = ceil(length / 2)
             medians[soil_variable] = values[poss_median]
@@ -66,3 +67,8 @@ def normalize_params(params):
     params["departamento"] = params["departamento"].upper()
     params["municipio"] = params["municipio"].upper()
     params["cultivo"] = params["cultivo"].title()
+
+result = create_client().get("ch4u-f3i5", where="departamento = 'AMAZONAS' and cultivo = 'Café' and municipio = 'EL ENCANTO'")#
+result_df = convert_dataset_to_df(result)
+
+print(result_df["f_sforo_p_bray_ii_mg_kg"])
