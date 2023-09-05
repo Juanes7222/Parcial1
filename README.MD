@@ -1,4 +1,4 @@
-# Instalar dependencias
+# Instalar dependencias - Python 3.11.4
 
 **Parcial 1 Proyecto Fundamentos Básicos Python** - Juan Esteban Cardona
 
