@@ -31,9 +31,14 @@ def get_params():
             else:
                 break
         if param == "limit":
-            if int(value) > 1000:
-                print("Se tomará como limite 1000 porque el ingresado lo sobrepasa")
-                value = "1000"
+            while True:
+                try:
+                    if int(value) > 1000:
+                        print("Se tomará como limite 1000 porque el ingresado lo sobrepasa")
+                        value = "1000"
+                    break
+                except ValueError as error:
+                    print(f"Error: {error}\n\t\tIntenta de nuevo")
         params[param] = value
 
     return params
